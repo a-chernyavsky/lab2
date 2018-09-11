@@ -1,3 +1,7 @@
 # SQL Server files
 *.mdf
 *.ldf
+
+*.lock
+project.lock.json
+artifacts/
