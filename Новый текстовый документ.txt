@@ -1,0 +1,3 @@
+.vs
+/.vs
+/lab22/bin

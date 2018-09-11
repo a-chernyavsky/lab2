@@ -1,0 +1,7 @@
+E:\!3 SEMESTR LABS\OOP\lab22\lab22\bin\Debug\lab22.exe
+E:\!3 SEMESTR LABS\OOP\lab22\lab22\bin\Debug\lab22.pdb
+E:\!3 SEMESTR LABS\OOP\lab22\lab22\obj\Debug\lab22.csprojAssemblyReference.cache
+E:\!3 SEMESTR LABS\OOP\lab22\lab22\obj\Debug\lab22.csproj.CoreCompileInputs.cache
+E:\!3 SEMESTR LABS\OOP\lab22\lab22\obj\Debug\lab22.exe
+E:\!3 SEMESTR LABS\OOP\lab22\lab22\obj\Debug\lab22.pdb
+E:\!3 SEMESTR LABS\OOP\lab22\lab22\bin\Debug\lab22.exe.config
