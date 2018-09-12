@@ -1,7 +1,13 @@
-﻿using System;
+﻿//#define ARRAY
+//#define STRING1
+//#define TUPLE
+//#define FIRST
+#define FIVELOCAL
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 
 namespace lab22
 {
@@ -9,6 +15,7 @@ namespace lab22
     {
         static void Main(string[] args)
         {
+#if FIRST
             //1)типы
             //а)
             bool t = true;
@@ -88,7 +95,8 @@ namespace lab22
             string newstr1 = null;//string -- ссылочный тип
             //int i7 = null =>ошибка
             int? i7 = null;
-
+#endif
+#if STRING1
             //==========================================
             //2) Строки
             char c2 = 'A';
@@ -141,7 +149,8 @@ namespace lab22
             Console.WriteLine(sb1);
             sb1.Insert(0, "AAAAAAAAAA");
             Console.WriteLine(sb1);
-
+#endif
+#if ARRAY
             //============================
             //ARRAYS
             Console.WriteLine();
@@ -210,7 +219,7 @@ namespace lab22
                 }
                 Console.WriteLine();
             }
-
+#endif
             //d)
 
             var str228 = "Неявнотипизированная переменная для хранения строки";
@@ -218,18 +227,53 @@ namespace lab22
             //output type
             Console.WriteLine("str228 type -  " + str228.GetType());//system.string
             Console.WriteLine("arr228 type -  " + arr228.GetType());//system.int32
-
+#if TUPLE
             //====================================
             //КОРТЕЖИ
 
-            (int,string,char,string,ulong) myfunction(string name)
-            {
+            (int, string, char, string, ulong) myfunction = (1,"Alex",'b',"Charniauski",88005553535);
+            //print
+            Console.WriteLine(myfunction);
+            
 
-                return 
-            }
+            (int num, string name, char group, string sur, ulong phone) myfunc2 = (2, "Stasik", 'a', "Pyrkin", 7788);
+            Console.WriteLine(myfunc2);
+            Console.WriteLine($"{myfunc2.num}  {myfunc2.group}  {myfunc2.phone}");
+
+            int num1 = (int)myfunc2.num;
+            string name1 = myfunc2.name;
+
+            int ans = myfunction.CompareTo(myfunc2);
+            Console.WriteLine(ans);
+
+
+#endif
+
+#if FIVELOCAL
+            int[] myarray222 = {3,4,5,2,4,2,4};
+            Console.WriteLine("my answer is " + NewFunction(myarray222));           
+#endif
 
 
             Console.ReadKey();
+        }
+        static int NewFunction(int[] arr)
+        {
+            int result = 0;
+            foreach(int i in arr)
+            {
+                if (i == 1)
+                    result++;
+            }
+
+            bool ans(int count)//local function
+            {
+                return count > 1;
+            }
+
+            if (ans(result))
+                result = 1999;
+            return result;
         }
     }
 }
