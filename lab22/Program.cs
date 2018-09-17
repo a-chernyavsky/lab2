@@ -1,8 +1,9 @@
-﻿//#define ARRAY
+﻿//#define TYPES
 //#define STRING1
+//#define ARRAY
 //#define TUPLE
-//#define FIRST
 #define FIVELOCAL
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace lab22
     {
         static void Main(string[] args)
         {
-#if FIRST
+#if TYPES
             //1)типы
             //а)
             bool t = true;
@@ -58,7 +59,7 @@ namespace lab22
             int i4 = Convert.ToInt32(l3);
 
             string str3 = "32323";
-            int i5 = int.Parse(str3);
+            int i5 = int.Parse(str3);//32323
             int i6;
             bool b5 = int.TryParse(str3, out i6);
 
@@ -86,7 +87,7 @@ namespace lab22
 
             var bla = 5;//int
             int mmm = bla + 1;//6
-            var myString = "getback moth...";//string
+            var myString = "hello world it is string ...";//string
 
             //--------------------
             //Ссылочные типы могут иметь значение null, 
@@ -95,32 +96,43 @@ namespace lab22
             string newstr1 = null;//string -- ссылочный тип
             //int i7 = null =>ошибка
             int? i7 = null;
+            System.Nullable<int> enable = 5;
+            if (i7.HasValue)
+            {
+                Console.WriteLine("i7 = " + i7.Value);
+            }
+            else { Console.WriteLine("i7 has not value"); }
+            if(enable.HasValue)
+            {
+                Console.WriteLine("enable = " + enable.Value);
+            }
+
 #endif
 #if STRING1
             //==========================================
             //2) Строки
-            char c2 = 'A';
-            char c3 = 'l';
-            bool bResult = c2 > c3;
-
             string strOne = "Hello";
             string strTwo = "big";
             string strThree = "brother";
+            //сравнение
+            Console.WriteLine("Сравнение двух строк: 1 - 1-я больше 2-й, -1 - 1-я меньше 2-й, 0 - равны\n" + String.Compare(strOne, strTwo));
+            Console.WriteLine(String.Compare(strOne, "Hello"));
+            //compareordinal, equels, ==, !=; <, >, <=, >= -- для ссылок
 
-            string[] strArr = new string[] { strOne, strTwo, strThree };
+            string[] strArr = new string[] { strOne, strTwo, strThree };//массив строк
 
-            string strNew1 = strOne + " " + strTwo + " " + strThree + ".";
+            string strNew1 = strOne + " " + strTwo + " " + strThree + ".";//конкатенация
             Console.WriteLine(strNew1 + "\n");
 
-            strNew1 = String.Concat(strNew1, "!!!");//конкатенация
+            strNew1 = String.Concat(strNew1, "Это Конкатенация");//конкатенация
             Console.WriteLine(strNew1 + "\n");
 
             string strNew2 = null;
-            strNew2 = String.Join(" ", strArr);
+            strNew2 = String.Join(" ", strArr);//соединение метод Join()
             Console.WriteLine(strNew2 + "\n");
 
 
-            string[] strArray = strNew1.Split(' ');
+            string[] strArray = strNew1.Split(' ');//разделение строки на слова
             foreach (string i in strArray)
             {
                 Console.WriteLine(i);
@@ -129,25 +141,30 @@ namespace lab22
 
             Console.WriteLine(strNew1.Substring(3, 9));//подстрока в строке
 
-            Console.WriteLine(strNew1.Insert(3, "! INSERT STRING !"));
+            Console.WriteLine(strNew1.Insert(3, "! INSERT STRING !"));//Вставка
 
             Console.WriteLine(strNew1.Remove(3,5));//удаление
 
-            strNew1 = String.Copy(strOne); Console.WriteLine(strNew1);
+            strNew1 = String.Copy(strOne); Console.WriteLine(strNew1);//копирование
 
+            string empty1 = "";
+            Console.WriteLine(empty1 == "");
+            Console.WriteLine(empty1.Length);
 
+            string nullstring = null;
+            Console.WriteLine(nullstring == "");
+            //Console.WriteLine(nullstring.Length == 0);
+            Console.WriteLine("строка nullstring является:      " + string.IsNullOrEmpty(nullstring));
 
-            string str6 = ""; //переменная содержит пустое значение
-            string str7 = null; //переменная не определена
 
             StringBuilder sb1 = new StringBuilder("Hello world");
             Console.WriteLine(sb1.Length);      //11
             Console.WriteLine(sb1.Capacity + "\n");    //16
-            sb1.Append(" blablabla");
+            sb1.Append(" blablabla");//добавление в конец
             Console.WriteLine(sb1);
-            sb1.Insert(2, "sucksucksuck");
+            sb1.Insert(2, "sucksucksuck");//добавление в любое место(2 симв.)
             Console.WriteLine(sb1);
-            sb1.Insert(0, "AAAAAAAAAA");
+            sb1.Insert(0, "AAAAAAAAAA");//добавл. в начало
             Console.WriteLine(sb1);
 #endif
 #if ARRAY
@@ -155,9 +172,9 @@ namespace lab22
             //ARRAYS
             Console.WriteLine();
             //a)
-            int[,] ArrInt = new int[,] { { 1, 2, 3 }, { 6, 7, 8 }, { 9, 9, 9 } };
-            int rows = ArrInt.GetUpperBound(0) + 1;
-            int columns = ArrInt.Length / rows;
+            int[,] ArrInt = new int[,] { { 1, 2, 3 }, { 6, 7, 8 }, { 9, 9, 9 } };//двумерный массив
+            int rows = ArrInt.GetUpperBound(0) + 1;//кол-во строк в массиве
+            int columns = ArrInt.Length / rows;//кол-во столбцов = (длина массива)/(кол-во строк)
             for(int i = 0; i < rows; i++)
             {
                 for(int j = 0; j < columns; j++)
@@ -172,7 +189,7 @@ namespace lab22
             //b)
             string[] ArrString = new string[] { "vasia", "petya", "masha" };
             Console.WriteLine("\n\nmy array length is " + ArrString.Length + ", con. of:");
-            foreach(string i in ArrString)
+            foreach(string i in ArrString)  //цикл foreach
             {
                 Console.WriteLine(i);//print all
             }
@@ -186,7 +203,7 @@ namespace lab22
 
             //c)
 
-            double[][] Arrstep = new double[3][];
+            double[][] Arrstep = new double[3][];//ступенчастый невыровненный массив массив
             Arrstep[0] = new double[2];
             Arrstep[1] = new double[3];
             Arrstep[2] = new double[4];
@@ -219,7 +236,7 @@ namespace lab22
                 }
                 Console.WriteLine();
             }
-#endif
+
             //d)
 
             var str228 = "Неявнотипизированная переменная для хранения строки";
@@ -227,9 +244,11 @@ namespace lab22
             //output type
             Console.WriteLine("str228 type -  " + str228.GetType());//system.string
             Console.WriteLine("arr228 type -  " + arr228.GetType());//system.int32
+#endif
 #if TUPLE
             //====================================
             //КОРТЕЖИ
+            //Кортежи предоставляют удобный способ для работы с набором значений
 
             (int, string, char, string, ulong) myfunction = (1,"Alex",'b',"Charniauski",88005553535);
             //print
@@ -250,30 +269,31 @@ namespace lab22
 #endif
 
 #if FIVELOCAL
-            int[] myarray222 = {3,4,5,2,4,2,4};
-            Console.WriteLine("my answer is " + NewFunction(myarray222));           
+            (int max, int min, int sum, char c) NewFunction (int[] array, string str)
+            {
+                int min = array[0];
+                int max = array[0];
+                int sum = 0;
+                foreach(int i in array)
+                {
+                    if (min > i)
+                        min = i;
+                    if (max < i)
+                        max = i;
+                    sum += i;
+                }
+                char firstchar = str[0];
+                (int max, int min, int sum, char c) result = (max, min, sum, firstchar);
+                return result;
+            }
+            int[] myarray222 = {3,4,5,2,333,2,4};
+            string str228 = "Alexey Charniauski";
+            Console.WriteLine("my answer is " + NewFunction(myarray222, str228));
+
 #endif
 
 
             Console.ReadKey();
-        }
-        static int NewFunction(int[] arr)
-        {
-            int result = 0;
-            foreach(int i in arr)
-            {
-                if (i == 1)
-                    result++;
-            }
-
-            bool ans(int count)//local function
-            {
-                return count > 1;
-            }
-
-            if (ans(result))
-                result = 1999;
-            return result;
         }
     }
 }
